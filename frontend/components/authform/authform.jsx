@@ -40,7 +40,7 @@ class AuthForm extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="test block">
                 <Form noValidate={ true } onSubmit={ this.props.makeTestAction }>
 
                     <FormField key='phoneNumber'>

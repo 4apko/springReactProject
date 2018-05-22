@@ -1,5 +1,5 @@
 let path = require ('path');
-let ExtractTextPlugin = require ('extract-text-webpack-plugin');
+let ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 let clientSrcPath = path.resolve (__dirname, 'frontend');
 let serverSrcPath = path.resolve (__dirname, 'src/main/resources/static');
