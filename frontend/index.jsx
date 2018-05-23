@@ -5,7 +5,8 @@ import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
 
 import { createStore, applyMiddleware } from 'redux'
-import testmiddleware from './middlewares/testmiddleware'
+import phoneValidateMiddleware from './middlewares/phoneValidateMiddleware'
+import ipMiddleware from './middlewares/ipMiddleware'
 import promise from 'redux-promise'
 
 import reduxReset from 'redux-reset'
@@ -16,7 +17,8 @@ import App from './components/app/app'
 const MIDDLEWARES = [
     thunk,
     promise,
-    testmiddleware
+    phoneValidateMiddleware,
+    ipMiddleware
 ];
 
 if (typeof window !== 'undefined' && typeof document !== 'undefined' && typeof document.createElement === 'function') {

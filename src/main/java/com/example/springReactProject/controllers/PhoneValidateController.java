@@ -1,7 +1,7 @@
 package com.example.springReactProject.controllers;
 
-import com.example.springReactProject.dao.AnswerDAO;
-import com.example.springReactProject.models.Answer;
+import com.example.springReactProject.dao.PhoneDAO;
+import com.example.springReactProject.models.Phone;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,13 +13,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class TestController {
+public class PhoneValidateController {
     @Autowired
-    AnswerDAO answerDAO;
+    PhoneDAO phoneDAO;
 
-    @RequestMapping(value = "/testep", method = RequestMethod.GET, consumes = MediaType.TEXT_HTML_VALUE)
-    public ResponseEntity<Answer> methodAdd(@RequestParam(value="phoneNumber", defaultValue="") String searchingParameter) throws JsonProcessingException {
-        return new ResponseEntity<>(answerDAO.executeRequest(searchingParameter), HttpStatus.OK);
+    @RequestMapping(value = "/validate", method = RequestMethod.GET, consumes = MediaType.TEXT_HTML_VALUE)
+    public ResponseEntity<Phone> methodAdd(@RequestParam(value="phoneNumber", defaultValue="") String searchingParameter) throws JsonProcessingException {
+        return new ResponseEntity<>(phoneDAO.executeRequest(searchingParameter), HttpStatus.OK);
     }
 }
 

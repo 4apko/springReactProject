@@ -1,5 +1,5 @@
 import React from 'react'
-import AuthForm from "../authform/authform";
+import PhoneValidate from "../services/phoneValidate";
 import Ip from "../services/ip";
 
 class AppContent extends React.Component {
@@ -7,7 +7,7 @@ class AppContent extends React.Component {
     render() {
         return (
             <div>
-                <AuthForm />
+                <PhoneValidate />
                 <Ip />
             </div>
 

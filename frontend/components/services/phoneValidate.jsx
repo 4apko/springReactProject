@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux'
 import {Field, formValueSelector, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
 
-import { makeTestAction } from '../../actions/testaction'
+import { phoneValidateAction } from '../../actions/phoneValidateAction'
 
 import Button from 'arui-feather/button'
 import Form from 'arui-feather/form'
@@ -15,45 +15,46 @@ import Label from 'arui-feather/label'
 import { inputField } from '../../utils/componentFactory'
 
 let formConfig = {
-    form: 'testForm'
+    form: 'phoneValidateForm'
 };
 
 let foundStatus = "";
 
-const selector = formValueSelector('testForm');
+const selector = formValueSelector('phoneValidateForm');
 
 function mapStateToProps(state) {
     return {
         phoneField: selector(state, 'phoneNumber'),
-        statusResp: state.testRed.respResult,
-        answer: state.testRed.answerReceived
+        statusResp: state.phoneRed.respResult,
+        answer: state.phoneRed.answerReceived
     };
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators( { makeTestAction }, dispatch )
+    return bindActionCreators( { phoneValidateAction: phoneValidateAction }, dispatch )
 }
 
 @reduxForm(formConfig)
 @connect(mapStateToProps, mapDispatchToProps)
-class AuthForm extends React.Component {
+class PhoneValidate extends React.Component {
 
     render() {
         return (
-            <div className="test block">
-                <Form noValidate={ true } onSubmit={ this.props.makeTestAction }>
+            <div className="block">
+                <p>Валидация номера через REST</p>
+                <Form noValidate={ true } onSubmit={ this.props.phoneValidateAction }>
 
                     <FormField key='phoneNumber'>
-                        <Field name='phoneNumber' placeholder='Укажите номер телефона в формате 79001234567' component={ inputField } size='m' />
+                        <Field name='phoneNumber' placeholder='Укажите номер телефона в формате 79999999999' component={ inputField } size='m' />
                     </FormField>
+
+                    { this.renderFinalResult() }
 
                     <FormField view='line'>
                         <Button width='available' view='extra' size='m' type='submit'>
                             Продолжить
                         </Button>
                     </FormField>
-
-                    { this.renderFinalResult() }
 
                 </Form>
             </div>
@@ -66,11 +67,11 @@ class AuthForm extends React.Component {
 
         return (this.props.answer === true ) &&
             <div>
-                <FormField view='line' width='400px' label={ <Label size='m'>Статус проверки номера</Label> }>
-                    <Input size='m' width='available' value={ foundStatus } />
+                <FormField label={ <Label width='available' size='m' className="inline-label">Статус проверки номера</Label> }>
+                    <Input width='available' size='m'  value={ foundStatus } />
                 </FormField>
             </div>
     }
 }
 
-export default AuthForm;
+export default PhoneValidate;

@@ -1,9 +1,9 @@
-import { TEST_ACTION } from '../constants/actions'
+import { PHONE_VALIDATE_ACTION } from '../constants/actions'
 import superagent from 'superagent'
 
-const testmiddleware = store => next => action => {
+const phoneValidateMiddleware = store => next => action => {
 
-    if (action.type !== TEST_ACTION) {
+    if (action.type !== PHONE_VALIDATE_ACTION) {
         return next(action);
     }
 
@@ -12,7 +12,7 @@ const testmiddleware = store => next => action => {
 
     let state = store.getState();
 
-    let dataFetch = state.form.testForm.values;
+    let dataFetch = state.form.phoneValidateForm.values;
 
     if (!action.value) {
         store.dispatch({
@@ -28,7 +28,7 @@ const testmiddleware = store => next => action => {
     });
 
     superagent
-        .get('/testep')
+        .get('/validate')
         .set('Content-Type', 'text/html; charset=utf-8')
         .query(dataFetch)
         .timeout(10000)
@@ -46,4 +46,4 @@ const testmiddleware = store => next => action => {
     return 1;
 };
 
-export default testmiddleware;
+export default phoneValidateMiddleware;

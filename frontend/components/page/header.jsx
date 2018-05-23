@@ -5,7 +5,7 @@ class Header extends React.Component {
 
     render() {
         return (
-            <Heading>Тестовый пример</Heading>
+            <Heading />
         )
     }
 
