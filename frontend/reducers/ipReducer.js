@@ -10,7 +10,7 @@ export default function ipReducer(state = initialState, action) {
             respResult: action.payload.ip,
             answerReceived: true
         };
-    }
+    }cxvdcvdffd
 
     return {
         ...state,
